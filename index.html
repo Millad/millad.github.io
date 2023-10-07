@@ -20,7 +20,6 @@
     <style>
       a {
         color: silver;
-        font-size: 2em;
         right: 100px;
       }
       h1 {
@@ -32,60 +31,36 @@
         background-color: black;
         color: white;
         font-family: Arial, Helvetica, sans-serif;
-        overflow: hidden;
-        transition: background-color 29s ease-in;
       }
 
       .main {
-        width: 300px;
         padding: 2em;
       }
       .main h1 {
         margin-bottom: 0;
       }
 
-      .fade-in {
-        position: relative;
-        animation: fadeIn ease 1s;
-      }
-
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-          left: 200px;
-        }
-        70% {
-          left: 20px;
-          transform: scale(1.2);
-        }
-        100% {
-          opacity: 1;
-          left: 0px;
-        }
-      }
     </style>
   </head>
-  <body onload="fadeInCorrectBgColor()">
+  <body >
     <div class="main">
-      <h1 class="fade-in">Millad Dagdoni</h1>
-      <a href="https://www.github.com/millad">Github.</a>
+      <h1 >Millad Dagdoni</h1>
+      <h3>Software Engineer from Oslo, Norway</h3>
+      <p><a href="https://www.github.com/millad">Github</a></p>
+      <h4>Article Contributions</h4>
+      <p><a href="./blog/2018/10/28/event-storming-in-domain-driven-design/index.html">Event Storming in Domain Driven Design</a></p>
+      <h4>Talks</h4>
+      <p><a href="https://2019.javazone.no/program/8a324c11-7368-4383-befd-91446e0df9b7">JavaZone 2019 - Deep learning talk</a></p>
+      <h4>Book Contributions</h4>
+      <p><a href="https://www.manning.com/books/grokking-deep-learning">Grokking Deep Learing</a></p>
+      <p><a href="https://www.manning.com/books/grokking-machine-learning">Grokking Machine Learning</a></p>
+      <p><a href="https://www.manning.com/books/deep-learning-for-vision-systems">Deep Learning for Vision Systems</a></p>
+      
+      <h4>Technology Timeline</h4>
+      <p>1999 - 2007: OOP PHP, JavaScript, ActionScript</p>
+      <p>2007 - today: JavaScript, Java</p>
+      <p>2015 - today: Machine Learning <em>(Certified Google ML)</em></p>
     </div>
 
-    <script type="text/javascript">
-      const hours = new Date().getHours();
-      const isDarkmodeTime = hours >= 17 || hours <= 8;
-
-      function fadeInCorrectBgColor() {
-        document.body.setAttribute(
-          "style",
-          "color: " +
-            (isDarkmodeTime ? "white" : "black") +
-            "; " +
-            "background-color: " +
-            (isDarkmodeTime ? "black" : "white") +
-            "; transition: background-color 1s ease-in;"
-        );
-      }
-    </script>
   </body>
 </html>
