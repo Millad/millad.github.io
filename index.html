@@ -15,10 +15,15 @@
       content="black-translucent"
     />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    
-
     <title>Millad Dagdoni</title>
     <style>
+      @font-face {
+        font-family: 'GT-America';
+        src: url('fonts/GT-America-Standard-Regular.otf') format('opentype'),
+            url('fonts/GT-America-Expanded-Medium.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+      }
       a {
         color: silver;
       }
@@ -27,19 +32,53 @@
         margin-top: 0em;
         margin-bottom: 0;
       }
-
+      h3,h2{
+        margin: 0;
+      }
+      h4{
+        margin-top:0;
+      }
       body {
+        opacity: 0;
         background-color: black;
         color: white;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: "GT-America", Helvetica, sans-serif;
         padding: 2em;
+        animation: fadeIn 1s ease-in forwards;
       }
+      img{
+        border-radius: 0.3em;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+     .full {
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    figure{
+       margin:0;
+    }
+    figcaption{
+      color:silver;
+    }
     </style>
   </head>
   <body>
       <h1>Millad Dagdoni</h1>
-      <h3>Modelling the world with software.</h3>
+      <h2>Modelling the world with software.</h2>
       <h3>Oslo, Norway</h3>
       <h4><a href="https://www.github.com/millad">Github</a></h4>
-  </body>
+      <figure>
+        <img class="full" alt="An image of Oslo Opera House" src="images/opera.avif"/>
+        <figcaption>Image of the Norwegian Opera House.</figcaption>
+      </figure>
+    </body>
 </html>
