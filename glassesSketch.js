@@ -53,7 +53,7 @@ function draw() {
 }
 
 function resetGlasses() {
-  glasses.x = width / 2;
+  x = width / 2;
   y = 0;
   vy = 0;
 }
