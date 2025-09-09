@@ -4,6 +4,7 @@ let vx, vy;
 let gravity = 0.5;
 let bounceFactor = 0.7;
 let friction = 0.98;
+let t = 0; 
 
 function preload() {
   glasses = loadImage("glasses.png");
@@ -22,6 +23,30 @@ function setup() {
 
 function draw() {
   background(0);
+  noFill();
+  strokeWeight(2);
+
+  let lines = 10; 
+  let spacing = 40; 
+
+  for (let i = 0; i < lines; i++) {
+     let yOffset = i * spacing + (windowHeight - 200); 
+    beginShape();
+    for (let x = 0; x <= width; x += 20) {
+      let angle = map(x, 0, width, 0, TWO_PI * 2); 
+      let y = yOffset + sin(angle + i * 0.5 - t) * 40;
+
+      let inter = map(x, 0, width, 0, 1);
+      let c = lerpColor(color('#e7e7e7ff'), color('#c4c5c6ff'), inter);
+      stroke(c);
+
+      vertex(x, y);
+    }
+    endShape();
+  }
+
+  t += 0.005; 
+  
 
   vy += gravity;
 
