@@ -1,0 +1,72 @@
+<h1>Event Storming in Domain Driven Design</h1>
+<p>In the first article I explain why DDD was important for building new modern systems that are modular in design. In this article I will explain how Event Storming as a practice in DDD can be used to identify the right decomposition and Microservices. 
+</p>
+<p>When using DDD we are on a trip for deep learning about how the business works, and then model the software based on our learning. It is important to align software domain models with what the domain experts had in mind. Event Storming is a process of learning, experimenting, and learning more and modeling again. I like to think of it as a way of iteratively learning from the unknown.
+</p>
+<h2>What is Event Storming?</h2>
+<p>Event storming is a fast design technique that is meant to engage Domain Experts and developers in a learning process. It is focused on the business and business process rather than on nouns and data. It focuses everyone on events and the business process rather than on classes and the database. Event Storming is a very visual approach which dismisses code from the experimentation and puts everyone on the same level with the design process. 
+</p>
+<p>In this example, I will present a way of working with Event Storming to understand what is going on in our business problems. We usually work with Event storming on a big wall with many colorful sticky notes. It’s important that business and technical people work together.
+</p>
+
+<p>The simple system we want to build should be able to:</p>
+
+
+<h4>Scenario 1: Search for an airplane ticket</h4>
+GIVEN airliner website
+YOU Search for a destination
+RETURN a list of results
+
+<br/>
+<h4>Scenario 2: Select the airplane ticket</h4>
+GIVEN list of available flights
+YOU select one flight
+AND Click purchase
+<br/>
+<h4>Scenario 3: Purchase Ticket</h4>
+GIVEN one selected flight
+YOU add credit card information
+AND Purchase ticket
+<br/>
+<h4>Scenario 4: Confirmation</h4>
+GIVEN a successful purchase of ticket
+YOU get an email confirmation about the purchase
+
+<h2>Always Start With The Events</h2>
+<p>A domain event is a record of some business action in a bounded context (software component that has specific things and does specific things). Domain Events should be represented as verbs in the past tense such as CustomerMoved, PackageShipped or BankTransactionRecorded. These are things that have completed in the past. 
+The first step is to write down what can happen in our domain using orange sticky notes. These are the domain events in our business.</p>  
+<img src="1.jpg" alt="Image of diagram of domain events"/>
+
+<h2>Identify the cause of the event</h2>
+<p>Business domain experts should be able to know the why of an event. These can be called a command which can be colored as blue. </p>
+<img src="2.jpg" alt="Image of a deeper diagram of domain events">
+
+<p>The green sticky notes is called display views. This is very similar to model view controller pattern in regular MVC architecture. The green sticky notes are the view in that MVC model. Conditions (invariants) are the yellow sticky notes as seen below. Much of the the logic in between a command (blue) and an event(orange) is there in the yellow sticky notes. Our system will work on many commands here. Use Domain-Driven Design techniques or the hexagonal architecture.
+Areas that contain a few or zero yellow notes are clear and easy to implement in code. </p>
+<img src="3.jpg" alt="Image of a deeper diagram of domain BOUNDED events">
+
+<h4>Defining Boundaries</h4>
+<p>Once you have completed defining part of the design stage, you are ready to draw boundaries and lines with arrows to show flow on your modeling surface. 
+</p>
+<p>You will most likely find boundaries for different conditions like: departmental divisions, or when a concept is important but not really part of the core domain or when many different business individuals have conflicting meanings for the same term. 
+</p>
+<p>Confirmation within a payment context may mean something completely different than confirmation within shipping context. That's why bounded contexts group relate language, meaning, and culture differently. By defining bounded contexts, we start to understand the subdomains of our system and how they interact without talking about code at all. 
+</p>
+
+<p>We can follow a simple pattern to be able to split our domain into a very cohesive area</p>
+<p>Command A (Search Command) is fired and it causes Event A (Searched Destination).</p>
+<p>Event A (Searched Destination) effects View A (Airliner Destination Search View).</p>
+<p>View A (Airliner Destination Search View) is also needed while doing a condition that uses Command B (Select Command) </p>
+<p>Command A (Search Command) and Command B (Select Command) might be good to be in one module together. I have called it for Choosing Operation, as seen below and have applied the same principles on the rest of our board/wall.</p>
+
+<p>Putting them together might look like this:</p>
+<img src="4.jpg" alt="Image of a bounded contexts">
+<p>
+    After separating and dividing our modules, we will map how they communicate with other modules by using Context-mapping. A module sends a query to another module - Choosing Operation Module sends a query with a selected ticket to the Purchase Operation Module. Our purchase module sends an event to an external context (Bank Domain) for issuing the bank the airline ticket purchase. A confirmation email is sent to the customer right after that.
+</p>
+<img src="5.jpg" alt="Image of a bounded contexts with events">
+<p>From there, you start working more on the technical decisions and how to implement this further in code. </p>
+
+<p>Happy Event Storming :)</p>
+<h5>Millad Dagdoni</h5>
+<a href="https://dagdoni.com">Dagdoni.com</a>
